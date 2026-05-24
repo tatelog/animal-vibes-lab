@@ -276,6 +276,26 @@ button:hover {
   font-size: 0.78rem;
 }
 
+.match-toggle {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 28px;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.match-toggle input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--teal);
+}
+
 .match-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -285,6 +305,10 @@ button:hover {
   min-width: 0;
   overflow: auto;
   padding-right: 2px;
+}
+
+.match-list[hidden] {
+  display: none;
 }
 
 .match-pill {

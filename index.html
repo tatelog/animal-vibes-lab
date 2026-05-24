@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Animal Vibes Lab</title>
-    <link rel="stylesheet" href="styles.css?v=20260524-8">
+    <link rel="stylesheet" href="styles.css?v=20260524-9">
   </head>
   <body>
     <main class="app-shell">
@@ -71,8 +71,12 @@
           <div class="matches-header">
             <h2>同じ5アニマルの人</h2>
             <p id="match-summary">計算後に検索できます</p>
+            <label class="match-toggle">
+              <input id="show-match-dates" type="checkbox">
+              <span>日付を表示</span>
+            </label>
           </div>
-          <div id="match-list" class="match-list" aria-live="polite"></div>
+          <div id="match-list" class="match-list" aria-live="polite" hidden></div>
         </section>
 
         <section class="celebrities discovery-block">
@@ -90,6 +94,6 @@
       </section>
     </main>
 
-    <script src="app.js?v=20260524-8"></script>
+    <script src="app.js?v=20260524-9"></script>
   </body>
 </html>

@@ -87,6 +87,7 @@ const matchStartYear = document.querySelector("#match-start-year");
 const matchEndYear = document.querySelector("#match-end-year");
 const matchSummary = document.querySelector("#match-summary");
 const matchList = document.querySelector("#match-list");
+const showMatchDates = document.querySelector("#show-match-dates");
 const celebritySummary = document.querySelector("#celebrity-summary");
 const celebrityList = document.querySelector("#celebrity-list");
 
@@ -249,6 +250,7 @@ function setText(id, text) {
 function resetMatches() {
   matchSummary.textContent = "計算後に検索できます";
   matchList.innerHTML = "";
+  matchList.hidden = !showMatchDates.checked;
 }
 
 async function renderCelebrityMatches() {
@@ -414,6 +416,7 @@ function renderMatches(matches, from, to) {
   const maxVisible = 180;
   matchSummary.textContent = `${from}-${to}年で ${matches.length}件`;
   matchList.innerHTML = "";
+  matchList.hidden = !showMatchDates.checked;
 
   matches.slice(0, maxVisible).forEach((parts) => {
     const item = document.createElement("button");
@@ -441,6 +444,10 @@ function renderMatches(matches, from, to) {
     matchList.appendChild(item);
   }
 }
+
+showMatchDates.addEventListener("change", () => {
+  matchList.hidden = !showMatchDates.checked;
+});
 
 function toInputDate(parts) {
   return `${parts.year}-${String(parts.month).padStart(2, "0")}-${String(parts.day).padStart(2, "0")}`;
