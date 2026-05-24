@@ -442,7 +442,7 @@ button:hover {
   .result-card,
   .result-card.essence {
     display: grid;
-    grid-template-columns: 68px minmax(0, 1fr);
+    grid-template-columns: 74px minmax(0, 1fr);
     grid-template-rows: auto auto;
     column-gap: 10px;
     align-content: center;
@@ -454,13 +454,7 @@ button:hover {
   }
 
   .result-card::before {
-    content: "•";
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    align-self: center;
-    color: var(--teal);
-    font-size: 1.1rem;
-    line-height: 1;
+    content: none;
   }
 
   .result-card span,
@@ -469,6 +463,12 @@ button:hover {
     grid-row: 1;
     color: var(--muted);
     font-size: 0.78rem;
+  }
+
+  .result-card span::before,
+  .result-card.essence span::before {
+    content: "• ";
+    color: var(--teal);
   }
 
   .result-card strong {
