@@ -173,17 +173,17 @@ button:hover {
 .results {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 8px;
+  gap: 5px;
   min-height: 0;
   min-width: 0;
 }
 
 .result-card {
-  min-height: 48px;
-  border-radius: 8px;
-  padding: 8px 10px;
+  min-height: 34px;
+  border-radius: 6px;
+  padding: 5px 8px;
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr);
+  grid-template-columns: 64px minmax(0, 1fr);
   align-items: center;
   align-content: center;
   overflow: hidden;
@@ -222,7 +222,7 @@ button:hover {
 
 .result-card span {
   color: var(--muted);
-  font-size: 0.76rem;
+  font-size: 0.7rem;
   font-weight: 800;
 }
 
@@ -233,7 +233,7 @@ button:hover {
 .result-card strong {
   display: block;
   margin: 0;
-  font-size: 1.05rem;
+  font-size: 0.9rem;
   line-height: 1.08;
   letter-spacing: 0;
   overflow-wrap: anywhere;
@@ -376,6 +376,34 @@ button:hover {
   margin-top: 2px;
 }
 
+.celebrity-actions {
+  display: flex;
+  margin-top: 6px;
+  gap: 6px;
+}
+
+.tweet-link,
+.bug-link {
+  display: inline-flex;
+  min-height: 26px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 3px 8px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.86);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.tweet-link:hover,
+.bug-link:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
 .empty-state {
   border: 1px dashed var(--line);
   border-radius: 8px;
@@ -407,6 +435,11 @@ button:hover {
   color: #7b8494;
   font-size: 0.78rem;
   line-height: 1.5;
+}
+
+.notes .bug-link {
+  margin-left: 8px;
+  vertical-align: middle;
 }
 
 @media (max-width: 780px) {
@@ -445,18 +478,18 @@ button:hover {
     display: grid !important;
     grid-template-columns: 1fr !important;
     grid-template-rows: none !important;
-    gap: 7px;
+    gap: 5px;
     margin-top: 12px;
   }
 
   .result-card,
   .result-card.essence {
     display: grid;
-    grid-template-columns: 86px minmax(0, 1fr);
+    grid-template-columns: 66px minmax(0, 1fr);
     align-items: center;
     align-content: center;
-    min-height: 46px;
-    padding: 9px 11px;
+    min-height: 34px;
+    padding: 5px 8px;
     color: var(--ink);
     background: rgba(255, 255, 255, 0.94);
   }
@@ -467,12 +500,12 @@ button:hover {
   }
 
   .result-card span {
-    font-size: 0.78rem;
+    font-size: 0.7rem;
   }
 
   .result-card strong {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
   }
 
   .surface-card,
@@ -539,13 +572,13 @@ button:hover {
   .result-card,
   .result-card.essence {
     display: grid;
-    grid-template-columns: 78px minmax(0, 1fr);
+    grid-template-columns: 64px minmax(0, 1fr);
     grid-template-rows: auto;
     column-gap: 10px;
     align-content: center;
-    min-height: 48px;
-    margin-bottom: 7px;
-    padding: 8px 10px;
+    min-height: 34px;
+    margin-bottom: 5px;
+    padding: 5px 8px;
     background: rgba(255, 255, 255, 0.92);
     color: var(--ink);
   }
@@ -559,7 +592,7 @@ button:hover {
     grid-column: 1;
     grid-row: 1;
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.7rem;
   }
 
   .result-card span::before,
@@ -571,7 +604,7 @@ button:hover {
     grid-column: 2;
     grid-row: 1;
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 0.9rem;
   }
 
   .result-card p,

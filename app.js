@@ -90,6 +90,7 @@ const matchList = document.querySelector("#match-list");
 const showMatchDates = document.querySelector("#show-match-dates");
 const celebritySummary = document.querySelector("#celebrity-summary");
 const celebrityList = document.querySelector("#celebrity-list");
+const bugReportLink = document.querySelector("#bug-report-link");
 
 let currentResult = null;
 let focusedMatchDate = null;
@@ -298,9 +299,20 @@ async function renderCelebrityMatches() {
       meta.className = "celebrity-meta";
       meta.textContent = `${genderLabel(celebrity.gender)} / ${celebrity.occupations.join(", ")}`;
 
+      const actions = document.createElement("div");
+      actions.className = "celebrity-actions";
+      const tweet = document.createElement("a");
+      tweet.className = "tweet-link";
+      tweet.href = buildCelebrityTweetUrl(celebrity);
+      tweet.target = "_blank";
+      tweet.rel = "noopener";
+      tweet.textContent = "Xに投稿";
+      actions.appendChild(tweet);
+
       item.appendChild(name);
       item.appendChild(detail);
       item.appendChild(meta);
+      item.appendChild(actions);
       celebrityList.appendChild(item);
     });
   } catch (error) {
@@ -311,6 +323,24 @@ async function renderCelebrityMatches() {
     item.textContent = "ネットワークまたはWikidata側の都合で検索に失敗しました";
     celebrityList.appendChild(item);
   }
+}
+
+function buildCelebrityTweetUrl(celebrity) {
+  const animals = [
+    currentResult.surface.animal,
+    currentResult.hope.animal,
+    currentResult.essence.animal,
+    currentResult.decision.animal,
+    currentResult.hidden
+  ].join(" / ");
+  const text = `5アニマル逆探知で ${celebrity.name} さんと同じ組み合わせを発見。${animals} #5animallookup`;
+  return `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+}
+
+function updateBugReportLink() {
+  if (!bugReportLink) return;
+  const text = `5アニマル逆探知で不具合を見つけました。${location.href.split("#")[0]} #5animallookup`;
+  bugReportLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
 }
 
 function sortCelebritiesByFocusDate(matches) {
@@ -480,4 +510,5 @@ document.querySelectorAll("input[name='gender']").forEach((input) => {
 });
 
 birthDate.value = "2000-01-01";
+updateBugReportLink();
 renderBirthDateValue();
