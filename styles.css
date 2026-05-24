@@ -1,0 +1,497 @@
+:root {
+  color-scheme: light;
+  --ink: #202124;
+  --muted: #667085;
+  --line: #d9dee7;
+  --paper: #fbfaf7;
+  --panel: #ffffff;
+  --amber: #f5b841;
+  --teal: #2f9d8f;
+  --coral: #d95f43;
+  --indigo: #4b5fbf;
+  --leaf: #5d8f42;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(245, 184, 65, 0.18), transparent 32%),
+    linear-gradient(315deg, rgba(47, 157, 143, 0.16), transparent 36%),
+    var(--paper);
+}
+
+.app-shell {
+  width: min(1380px, calc(100% - 24px));
+  height: 100vh;
+  margin: 0 auto;
+  padding: 14px 0 10px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 244px minmax(420px, 1fr) 320px;
+  gap: 12px;
+  min-height: 0;
+  min-width: 0;
+  align-items: stretch;
+}
+
+.panel,
+.result-card,
+.notes {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 40px rgba(32, 33, 36, 0.08);
+}
+
+.panel {
+  padding: 18px;
+  border-radius: 8px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.title-block {
+  margin-bottom: 16px;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.45rem, 3.2vw, 2.2rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.birth-form {
+  display: grid;
+  gap: 12px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+input[type="date"],
+input[type="number"] {
+  width: 100%;
+  min-height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 0 12px;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+}
+
+.gender-field {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.gender-field legend {
+  grid-column: 1 / -1;
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.gender-field label {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.gender-field input {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px 0 0;
+  accent-color: var(--teal);
+}
+
+button {
+  min-height: 40px;
+  border: 0;
+  border-radius: 6px;
+  padding: 0 16px;
+  color: #fff;
+  background: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+.match-tools {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  min-height: 0;
+  min-width: 0;
+}
+
+.result-card {
+  min-height: 0;
+  border-radius: 8px;
+  padding: 14px;
+  display: grid;
+  align-content: space-between;
+  overflow: hidden;
+}
+
+.surface-card {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.hope-card {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.essence-card {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.decision-card {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.hidden-card {
+  grid-column: 2;
+  grid-row: 3;
+}
+
+.result-card.essence {
+  min-height: 0;
+  color: #fff;
+  background: linear-gradient(135deg, #243042, #2f9d8f);
+}
+
+.result-card span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.result-card.essence span {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.result-card strong {
+  display: block;
+  margin: 7px 0;
+  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  line-height: 1.08;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.result-card p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.34;
+}
+
+.result-card.essence p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.discovery {
+  display: grid;
+  grid-template-rows: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 10px;
+  min-height: 0;
+  min-width: 0;
+}
+
+.discovery-block {
+  min-height: 0;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 16px 40px rgba(32, 33, 36, 0.08);
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.matches-header {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 8px;
+}
+
+.matches-header h2 {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+.matches-header p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.match-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  align-content: start;
+  gap: 6px;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.match-pill {
+  min-height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 7px 9px;
+  background: #fff;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.match-pill.current {
+  border-color: var(--teal);
+  background: rgba(47, 157, 143, 0.12);
+}
+
+.celebrity-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+  gap: 7px;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.celebrity-card {
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 9px;
+  background: #fff;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.celebrity-card strong {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.celebrity-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.74rem;
+  line-height: 1.32;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+.celebrity-birth {
+  color: #475467;
+  font-weight: 700;
+}
+
+.celebrity-meta {
+  margin-top: 2px;
+}
+
+.empty-state {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+}
+
+.notes {
+  margin-top: 0;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.notes h2 {
+  display: inline;
+  margin: 0 8px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.notes p {
+  display: inline;
+  margin-bottom: 0;
+  color: #7b8494;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 780px) {
+  body {
+    overflow: auto;
+  }
+
+  .app-shell {
+    width: min(100% - 20px, 640px);
+    height: auto;
+    padding: 14px 0;
+    display: block;
+  }
+
+  .workspace,
+  .results {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace,
+  .discovery {
+    display: grid;
+  }
+
+  .matches-header {
+    display: block;
+  }
+
+  .result-card.essence {
+    grid-column: auto;
+  }
+}
+
+@media (min-width: 781px) and (max-width: 1180px), (min-width: 781px) and (max-height: 720px) {
+  .workspace {
+    grid-template-columns: 236px minmax(220px, 1fr) 304px;
+  }
+
+  .results {
+    display: block;
+    overflow: auto;
+    min-width: 0;
+  }
+
+  .result-card,
+  .result-card.essence {
+    display: grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    align-content: center;
+    min-height: 76px;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--ink);
+  }
+
+  .result-card::before {
+    content: "•";
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: center;
+    color: var(--teal);
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .result-card span,
+  .result-card.essence span {
+    grid-column: 1;
+    grid-row: 1;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+
+  .result-card strong {
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0;
+    font-size: 1.18rem;
+  }
+
+  .result-card p,
+  .result-card.essence p {
+    grid-column: 2;
+    grid-row: 2;
+    color: var(--muted);
+    font-size: 0.72rem;
+  }
+
+  .surface-card,
+  .hope-card,
+  .essence-card,
+  .decision-card,
+  .hidden-card {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}

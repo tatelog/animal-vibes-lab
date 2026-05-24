@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Animal Vibes Lab</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="5アニマルズ計算機">
+        <div class="panel input-panel">
+          <div class="title-block">
+            <p class="eyebrow">5 Animal Remix</p>
+            <h1>Animal Vibes Lab</h1>
+          </div>
+
+          <form id="birth-form" class="birth-form">
+            <label>
+              <span>生年月日</span>
+              <input id="birth-date" type="date" min="1900-01-01" max="2100-12-31" required>
+            </label>
+
+            <fieldset class="gender-field">
+              <legend>性別</legend>
+              <label>
+                <input type="radio" name="gender" value="female" checked>
+                <span>女性</span>
+              </label>
+              <label>
+                <input type="radio" name="gender" value="male">
+                <span>男性</span>
+              </label>
+            </fieldset>
+
+            <button type="submit">計算する</button>
+          </form>
+
+          <div class="match-tools">
+            <input id="match-start-year" type="hidden" value="1900">
+            <input id="match-end-year" type="hidden" value="2100">
+            <button id="find-matches" type="button">同じ5アニマルを調べる</button>
+          </div>
+        </div>
+
+        <section class="results" aria-live="polite">
+          <article class="result-card essence">
+            <span>本質</span>
+            <strong id="essence-animal">-</strong>
+            <p id="essence-detail">生年月日を入力してください</p>
+          </article>
+          <article class="result-card">
+            <span>表面</span>
+            <strong id="surface-animal">-</strong>
+            <p id="surface-detail">-</p>
+          </article>
+          <article class="result-card">
+            <span>意思決定</span>
+            <strong id="decision-animal">-</strong>
+            <p id="decision-detail">-</p>
+          </article>
+          <article class="result-card">
+            <span>希望</span>
+            <strong id="hope-animal">-</strong>
+            <p id="hope-detail">-</p>
+          </article>
+          <article class="result-card">
+            <span>隠れ</span>
+            <strong id="hidden-animal">-</strong>
+            <p id="hidden-detail">-</p>
+          </article>
+        </section>
+
+        <section class="discovery" aria-label="同じ5アニマル検索">
+          <section class="matches discovery-block">
+            <div class="matches-header">
+              <h2>同じ5アニマルの人</h2>
+              <p id="match-summary">計算後に検索できます</p>
+            </div>
+            <div id="match-list" class="match-list" aria-live="polite"></div>
+          </section>
+
+          <section class="celebrities discovery-block">
+            <div class="matches-header">
+              <h2>同じ5アニマルの芸能人</h2>
+              <p id="celebrity-summary">Wikidataを都度検索します</p>
+            </div>
+            <div id="celebrity-list" class="celebrity-list" aria-live="polite"></div>
+          </section>
+        </section>
+      </section>
+
+      <section class="notes">
+        <h2>計算メモ</h2>
+        <p>本質・表面・意思決定・隠れは仕様書の計算ロジックに合わせています。希望キャラは判明済みの男性検証値を確定表示し、それ以外は性別込み予測モデルとして表示します。芸能人検索は同じ5アニマルになる日付を算出して、Wikidataを都度検索し、人物側の性別も表示します。</p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
