@@ -91,6 +91,7 @@ const celebritySummary = document.querySelector("#celebrity-summary");
 const celebrityList = document.querySelector("#celebrity-list");
 
 let currentResult = null;
+let focusedMatchDate = null;
 
 function selectedGender() {
   return document.querySelector("input[name='gender']:checked")?.value || "female";
@@ -220,6 +221,7 @@ function renderResult(parts) {
   const adjusted = parts;
   const gender = selectedGender();
   const result = calculateAnimals(adjusted, gender);
+  focusedMatchDate = toInputDate(adjusted);
   currentResult = {
     input: parts,
     key: combinationKey(result),
@@ -266,8 +268,9 @@ async function renderCelebrityMatches() {
   celebrityList.appendChild(loading);
 
   try {
-    const matches = await fetchCelebritiesByDates(dates);
-    celebritySummary.textContent = `${from}-${to}年 / 候補日 ${dates.length}件 / 芸能人 ${matches.length}人`;
+    const matches = sortCelebritiesByFocusDate(await fetchCelebritiesByDates(dates));
+    const focusLabel = focusedMatchDate && dates.includes(focusedMatchDate) ? ` / ${formatDate(focusedMatchDate)}を上に表示` : "";
+    celebritySummary.textContent = `${from}-${to}年 / 候補日 ${dates.length}件 / 芸能人 ${matches.length}人${focusLabel}`;
     celebrityList.innerHTML = "";
 
     if (matches.length === 0) {
@@ -306,6 +309,16 @@ async function renderCelebrityMatches() {
     item.textContent = "ネットワークまたはWikidata側の都合で検索に失敗しました";
     celebrityList.appendChild(item);
   }
+}
+
+function sortCelebritiesByFocusDate(matches) {
+  if (!focusedMatchDate) return matches;
+
+  return [...matches].sort((a, b) => {
+    const aFocused = a.birthDate === focusedMatchDate ? 0 : 1;
+    const bFocused = b.birthDate === focusedMatchDate ? 0 : 1;
+    return aFocused - bFocused || a.birthDate.localeCompare(b.birthDate) || a.name.localeCompare(b.name, "ja");
+  });
 }
 
 function findMatchingBirthdays() {
@@ -407,6 +420,7 @@ function renderMatches(matches, from, to) {
     item.type = "button";
     item.className = "match-pill";
     item.textContent = `${parts.year}/${parts.month}/${parts.day}`;
+    item.title = "この日付の芸能人を先頭に表示";
 
     if (birthDate.value === toInputDate(parts)) {
       item.classList.add("current");
@@ -450,6 +464,3 @@ document.querySelectorAll("input[name='gender']").forEach((input) => {
     }
   });
 });
-
-birthDate.value = "1994-04-08";
-renderResult(parseDateInput(birthDate.value));
