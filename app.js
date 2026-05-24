@@ -368,7 +368,7 @@ function buildCelebrityTweetUrl(celebrity, totalMatches = 1) {
     currentResult.decision.animal,
     currentResult.hidden
   ].join(" / ");
-  const also = totalMatches > 1 ? ` 他${totalMatches - 1}名` : "";
+  const also = totalMatches > 1 ? `他${totalMatches - 1}名` : "";
   return tweetIntentUrl(`私の5アニマルは ${celebrity.name} さん${also}と同じでした。${animals}`);
 }
 
