@@ -33,60 +33,54 @@
               </label>
             </fieldset>
 
-            <button type="submit">計算する</button>
-          </form>
-
-          <div class="match-tools">
             <input id="match-start-year" type="hidden" value="1900">
             <input id="match-end-year" type="hidden" value="2100">
-            <button id="find-matches" type="button">同じ5アニマルを調べる</button>
-          </div>
+            <button type="submit">計算して同じ5アニマルを調べる</button>
+          </form>
+
+          <section class="results" aria-live="polite">
+            <article class="result-card surface-card">
+              <span>表面</span>
+              <strong id="surface-animal">-</strong>
+              <p id="surface-detail">-</p>
+            </article>
+            <article class="result-card hope-card">
+              <span>希望</span>
+              <strong id="hope-animal">-</strong>
+              <p id="hope-detail">-</p>
+            </article>
+            <article class="result-card essence essence-card">
+              <span>本質</span>
+              <strong id="essence-animal">-</strong>
+              <p id="essence-detail">生年月日を入力してください</p>
+            </article>
+            <article class="result-card decision-card">
+              <span>意思決定</span>
+              <strong id="decision-animal">-</strong>
+              <p id="decision-detail">-</p>
+            </article>
+            <article class="result-card hidden-card">
+              <span>隠れ</span>
+              <strong id="hidden-animal">-</strong>
+              <p id="hidden-detail">-</p>
+            </article>
+          </section>
         </div>
 
-        <section class="results" aria-live="polite">
-          <article class="result-card essence">
-            <span>本質</span>
-            <strong id="essence-animal">-</strong>
-            <p id="essence-detail">生年月日を入力してください</p>
-          </article>
-          <article class="result-card">
-            <span>表面</span>
-            <strong id="surface-animal">-</strong>
-            <p id="surface-detail">-</p>
-          </article>
-          <article class="result-card">
-            <span>意思決定</span>
-            <strong id="decision-animal">-</strong>
-            <p id="decision-detail">-</p>
-          </article>
-          <article class="result-card">
-            <span>希望</span>
-            <strong id="hope-animal">-</strong>
-            <p id="hope-detail">-</p>
-          </article>
-          <article class="result-card">
-            <span>隠れ</span>
-            <strong id="hidden-animal">-</strong>
-            <p id="hidden-detail">-</p>
-          </article>
+        <section class="matches discovery-block">
+          <div class="matches-header">
+            <h2>同じ5アニマルの人</h2>
+            <p id="match-summary">計算後に検索できます</p>
+          </div>
+          <div id="match-list" class="match-list" aria-live="polite"></div>
         </section>
 
-        <section class="discovery" aria-label="同じ5アニマル検索">
-          <section class="matches discovery-block">
-            <div class="matches-header">
-              <h2>同じ5アニマルの人</h2>
-              <p id="match-summary">計算後に検索できます</p>
-            </div>
-            <div id="match-list" class="match-list" aria-live="polite"></div>
-          </section>
-
-          <section class="celebrities discovery-block">
-            <div class="matches-header">
-              <h2>同じ5アニマルの芸能人</h2>
-              <p id="celebrity-summary">Wikidataを都度検索します</p>
-            </div>
-            <div id="celebrity-list" class="celebrity-list" aria-live="polite"></div>
-          </section>
+        <section class="celebrities discovery-block">
+          <div class="matches-header">
+            <h2>同じ5アニマルの芸能人</h2>
+            <p id="celebrity-summary">Wikidataを都度検索します</p>
+          </div>
+          <div id="celebrity-list" class="celebrity-list" aria-live="polite"></div>
         </section>
       </section>
 

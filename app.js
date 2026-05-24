@@ -85,7 +85,6 @@ const birthForm = document.querySelector("#birth-form");
 const birthDate = document.querySelector("#birth-date");
 const matchStartYear = document.querySelector("#match-start-year");
 const matchEndYear = document.querySelector("#match-end-year");
-const findMatchesButton = document.querySelector("#find-matches");
 const matchSummary = document.querySelector("#match-summary");
 const matchList = document.querySelector("#match-list");
 const celebritySummary = document.querySelector("#celebrity-summary");
@@ -443,8 +442,6 @@ birthForm.addEventListener("submit", (event) => {
   if (!birthDate.value) return;
   renderResult(parseDateInput(birthDate.value));
 });
-
-findMatchesButton.addEventListener("click", findMatchingBirthdays);
 
 document.querySelectorAll("input[name='gender']").forEach((input) => {
   input.addEventListener("change", () => {
