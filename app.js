@@ -471,3 +471,6 @@ document.querySelectorAll("input[name='gender']").forEach((input) => {
     }
   });
 });
+
+birthDate.value = "2000-01-01";
+renderBirthDateValue();
