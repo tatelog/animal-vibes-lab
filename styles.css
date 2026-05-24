@@ -417,8 +417,9 @@ button:hover {
   }
 
   .results {
-    display: grid;
-    grid-template-columns: 1fr;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
     gap: 7px;
     margin-top: 12px;
   }
@@ -454,8 +455,13 @@ button:hover {
   .essence-card,
   .decision-card,
   .hidden-card {
-    grid-column: auto;
-    grid-row: auto;
+    grid-column: auto !important;
+    grid-row: auto !important;
+  }
+
+  .result-card p,
+  .result-card.essence p {
+    display: none !important;
   }
 
   .discovery-block {
