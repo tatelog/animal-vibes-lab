@@ -539,13 +539,13 @@ button:hover {
   .result-card,
   .result-card.essence {
     display: grid;
-    grid-template-columns: 74px minmax(0, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-columns: 78px minmax(0, 1fr);
+    grid-template-rows: auto;
     column-gap: 10px;
     align-content: center;
-    min-height: 76px;
-    margin-bottom: 8px;
-    padding: 10px 12px;
+    min-height: 48px;
+    margin-bottom: 7px;
+    padding: 8px 10px;
     background: rgba(255, 255, 255, 0.92);
     color: var(--ink);
   }
@@ -571,7 +571,7 @@ button:hover {
     grid-column: 2;
     grid-row: 1;
     margin: 0;
-    font-size: 1.18rem;
+    font-size: 1.05rem;
   }
 
   .result-card p,
