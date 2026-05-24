@@ -172,45 +172,46 @@ button:hover {
 
 .results {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: 1fr;
+  gap: 8px;
   min-height: 0;
   min-width: 0;
 }
 
 .result-card {
-  min-height: 0;
+  min-height: 48px;
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px 10px;
   display: grid;
-  align-content: space-between;
+  grid-template-columns: 78px minmax(0, 1fr);
+  align-items: center;
+  align-content: center;
   overflow: hidden;
 }
 
 .surface-card {
-  grid-column: 2;
-  grid-row: 1;
+  grid-column: auto;
+  grid-row: auto;
 }
 
 .hope-card {
-  grid-column: 1;
-  grid-row: 2;
+  grid-column: auto;
+  grid-row: auto;
 }
 
 .essence-card {
-  grid-column: 2;
-  grid-row: 2;
+  grid-column: auto;
+  grid-row: auto;
 }
 
 .decision-card {
-  grid-column: 3;
-  grid-row: 2;
+  grid-column: auto;
+  grid-row: auto;
 }
 
 .hidden-card {
-  grid-column: 2;
-  grid-row: 3;
+  grid-column: auto;
+  grid-row: auto;
 }
 
 .result-card.essence {
@@ -221,7 +222,7 @@ button:hover {
 
 .result-card span {
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.76rem;
   font-weight: 800;
 }
 
@@ -231,8 +232,8 @@ button:hover {
 
 .result-card strong {
   display: block;
-  margin: 7px 0;
-  font-size: clamp(1rem, 2vw, 1.38rem);
+  margin: 0;
+  font-size: 1.05rem;
   line-height: 1.08;
   letter-spacing: 0;
   overflow-wrap: anywhere;
