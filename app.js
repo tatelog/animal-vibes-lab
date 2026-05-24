@@ -267,7 +267,7 @@ async function renderCelebrityMatches() {
 
   try {
     const matches = await fetchCelebritiesByDates(dates);
-    celebritySummary.textContent = `${from}-${to}年 / ${dates.length}日付から ${matches.length}人`;
+    celebritySummary.textContent = `${from}-${to}年 / 候補日 ${dates.length}件 / 芸能人 ${matches.length}人`;
     celebrityList.innerHTML = "";
 
     if (matches.length === 0) {
