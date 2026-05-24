@@ -451,11 +451,18 @@ function formatDate(value) {
   return `${parts.year}/${parts.month}/${parts.day}`;
 }
 
+function renderBirthDateValue() {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(birthDate.value)) return;
+  renderResult(parseDateInput(birthDate.value));
+}
+
 birthForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  if (!birthDate.value) return;
-  renderResult(parseDateInput(birthDate.value));
+  renderBirthDateValue();
 });
+
+birthDate.addEventListener("change", renderBirthDateValue);
+birthDate.addEventListener("input", renderBirthDateValue);
 
 document.querySelectorAll("input[name='gender']").forEach((input) => {
   input.addEventListener("change", () => {
