@@ -404,6 +404,15 @@ button:hover {
   color: var(--teal);
 }
 
+.summary-share {
+  width: fit-content;
+  margin-top: 6px;
+}
+
+.summary-share[hidden] {
+  display: none;
+}
+
 .empty-state {
   border: 1px dashed var(--line);
   border-radius: 8px;

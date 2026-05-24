@@ -90,6 +90,7 @@ const matchList = document.querySelector("#match-list");
 const showMatchDates = document.querySelector("#show-match-dates");
 const celebritySummary = document.querySelector("#celebrity-summary");
 const celebrityList = document.querySelector("#celebrity-list");
+const celebrityShareLink = document.querySelector("#celebrity-share-link");
 const bugReportLink = document.querySelector("#bug-report-link");
 
 let currentResult = null;
@@ -264,6 +265,7 @@ async function renderCelebrityMatches() {
   const dates = findMatchingBirthdayParts(from, to).map(toInputDate);
 
   celebritySummary.textContent = "Wikidataで検索中...";
+  celebrityShareLink.hidden = true;
   celebrityList.innerHTML = "";
   const loading = document.createElement("div");
   loading.className = "empty-state";
@@ -274,6 +276,7 @@ async function renderCelebrityMatches() {
     const matches = sortCelebritiesByFocusDate(await fetchCelebritiesByDates(dates));
     const focusLabel = focusedMatchDate && dates.includes(focusedMatchDate) ? ` / ${formatDate(focusedMatchDate)}を上に表示` : "";
     celebritySummary.textContent = `${from}-${to}年 / 候補日 ${dates.length}件 / 芸能人 ${matches.length}人${focusLabel}`;
+    updateCelebrityShareLink(matches);
     celebrityList.innerHTML = "";
 
     if (matches.length === 0) {
@@ -303,7 +306,7 @@ async function renderCelebrityMatches() {
       actions.className = "celebrity-actions";
       const tweet = document.createElement("a");
       tweet.className = "tweet-link";
-      tweet.href = buildCelebrityTweetUrl(celebrity);
+      tweet.href = buildCelebrityTweetUrl(celebrity, matches.length);
       tweet.target = "_blank";
       tweet.rel = "noopener";
       tweet.textContent = "Xに投稿";
@@ -317,6 +320,7 @@ async function renderCelebrityMatches() {
     });
   } catch (error) {
     celebritySummary.textContent = "検索できませんでした";
+    celebrityShareLink.hidden = true;
     celebrityList.innerHTML = "";
     const item = document.createElement("div");
     item.className = "empty-state";
@@ -325,7 +329,38 @@ async function renderCelebrityMatches() {
   }
 }
 
-function buildCelebrityTweetUrl(celebrity) {
+function animalShareText() {
+  return [
+    currentResult.surface.animal,
+    currentResult.hope.animal,
+    currentResult.essence.animal,
+    currentResult.decision.animal,
+    currentResult.hidden
+  ].join(" / ");
+}
+
+function tweetIntentUrl(text) {
+  return `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${text} #5animallookup`)}`;
+}
+
+function updateCelebrityShareLink(matches) {
+  if (!celebrityShareLink) return;
+
+  const animals = animalShareText();
+  let text = `私の5アニマルは芸能人との重複が見つかりませんでした。${animals}`;
+
+  if (matches.length === 1) {
+    text = `私の5アニマルは ${matches[0].name} さんと同じでした。${animals}`;
+  } else if (matches.length > 1) {
+    text = `私の5アニマルは ${matches[0].name} さん他${matches.length - 1}名と同じでした。${animals}`;
+  }
+
+  celebrityShareLink.href = tweetIntentUrl(text);
+  celebrityShareLink.textContent = matches.length === 0 ? "重複なしをXに投稿" : "結果をXに投稿";
+  celebrityShareLink.hidden = false;
+}
+
+function buildCelebrityTweetUrl(celebrity, totalMatches = 1) {
   const animals = [
     currentResult.surface.animal,
     currentResult.hope.animal,
@@ -333,14 +368,14 @@ function buildCelebrityTweetUrl(celebrity) {
     currentResult.decision.animal,
     currentResult.hidden
   ].join(" / ");
-  const text = `5アニマル逆探知で ${celebrity.name} さんと同じ組み合わせを発見。${animals} #5animallookup`;
-  return `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+  const also = totalMatches > 1 ? ` 他${totalMatches - 1}名` : "";
+  return tweetIntentUrl(`私の5アニマルは ${celebrity.name} さん${also}と同じでした。${animals}`);
 }
 
 function updateBugReportLink() {
   if (!bugReportLink) return;
-  const text = `5アニマル逆探知で不具合を見つけました。${location.href.split("#")[0]} #5animallookup`;
-  bugReportLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+  const text = `5アニマル逆探知で不具合を見つけました。${location.href.split("#")[0]}`;
+  bugReportLink.href = tweetIntentUrl(text);
 }
 
 function sortCelebritiesByFocusDate(matches) {
